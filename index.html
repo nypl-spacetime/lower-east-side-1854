@@ -7,13 +7,17 @@
   <script src="js/d3.v4.min.js"></script>
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />
-  <style>
-    body { margin:0; padding:0; }
-    #map { position:absolute; top:0; bottom:0; width:100%; }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<div id="map"></div>
+  <article>
+    <h1>Lower East Side, 1854</h1>
+    <p>
+      People from <a href="https://digitalcollections.nypl.org/items/d73e7cd0-529b-0134-92d5-00505686a51c">1854 New York City Directory</a>, matched with addresses and buildings from <a href="http://buildinginspector.nypl.org">Building Inspector</a>. Data from <a href="http://spacetime.nypl.org/">NYC Space/Time Directory</a>. For more information on connecting different datasets from the NYC Space/Time Directory, see our <a href="https://github.com/nypl-spacetime/tutorial-historical-addresses">tutorial on historical addresses</a>.
+    </p>
+    <div id="map"></div>
+    <div id="legend"></div>
+  </article>
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoibnlwbGxhYnMiLCJhIjoiSFVmbFM0YyJ9.sl0CRaO71he1XMf_362FZQ'
 
@@ -30,6 +34,8 @@
       url: 'https://s3.amazonaws.com/maptiles.nypl.org/859/859spec.json',
       tileSize: 256
     })
+
+    map.addControl(new mapboxgl.NavigationControl())
 
     map.addLayer({
       id: 'mapwarper',
@@ -65,8 +71,8 @@
         type: 'fill',
         source: 'spacetime',
         paint: {
-          'fill-color': '#ff08f8',
-          'fill-opacity': 0.9
+          'fill-color': '#ffd555',
+          'fill-opacity': 1
         },
         filter: [
           'all',

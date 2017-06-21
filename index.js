@@ -22,32 +22,6 @@ const yearMargin = 5
 
 const lowerEastSide = JSON.parse(fs.readFileSync(path.join(__dirname, 'lower-east-side.geojson')))
 
-const convertObjects = {
-  'st:Building': (object) => {
-
-    // {"id":"7786e4c98b12ee87a89ee7fb9a8afc4f","type":"st:Building","data":{"objects":
-    // [{"id":"building-inspector/89680","type":"st:Building","validSince":1857,"validUntil":1857,"data":{"sheetId":180,"layerId":859,"mapId":7141,"color":"pink,yellow"}}]},
-    // "geometry":{"type":"Polygon","coordinates":
-    // // if (object.name) {
-      // console.log(JSON.stringify(object))
-    // }
-    // console.log(object.name)
-    // console.log(object.data.objects.length)
-
-
-    // kijk of er adressen zijn met dit gebouw
-    // als er is adres, kijk dan of er personen zijn met dat adres
-  },
-  'st:Person': (object) => {
-    // console.log(JSON.stringify(object))
-
-    // {"id":"cae302e2951b469befcc5d91a28099da","type":"st:Person","name":"Charles Peiser","data":{"objects":[{"id":"city-directories-building-inspector/1854-1855.630.912.2421","type":"st:Person","relations":[{"to":"city-directories/1854-1855.630.912.2421","type":"st:sameAs"}]},{"id":"city-directories/1854-1855.630.912.2421","type":"st:Person","name":"Charles Peiser","validSince":1854,"validUntil":1855,"data":{"address":"148 Essex Street","occupation":"shoemaker","originalAddress":"148 Essex"},"relations":[{"to":"building-inspector-nyc-streets/101119-1","type":"st:in"}]}]},"geometry":{"type":"Point","coordinates":[-73.98714601993566,40.720561212533674]}}
-  },
-  'st:Address': (object) => {
-
-  }
-}
-
 let indexes = {
   addressForBuilding: {},
   personsForAddress: {}
@@ -180,23 +154,5 @@ function filterData () {
   .pipe(fs.createWriteStream(path.join(__dirname, 'lower-east-side.objects.ndjson')))
   .on('finish', indexData)
 }
-
-
-  // .map(indexObject)
-  // .map((object) => convertObjects[object.type] && convertObjects[object.type](object))
-  // .compact()
-  // .map(JSON.stringify)
-  // .intersperse('\n')
-  // .pipe(process.stdout)
-
-
-  // .done(() => {
-  //   console.log('Done')
-  // })
-
-
-
-// grijp alle gebouwen en mensen en adressen uit graph.ndjson
-// filter op geo en op jaar 1854
 
 filterData()
