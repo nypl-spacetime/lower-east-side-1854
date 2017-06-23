@@ -97,11 +97,13 @@ function writeData () {
 
       let addresses
       let hasPersons = false
+      let personCount = 0
       if (indexes.addressForBuilding[biBuilding.id]) {
         addresses = indexes.addressForBuilding[biBuilding.id]
           .map((address) => {
             if (indexes.personsForAddress[address.id]) {
               hasPersons = true
+              personCount += indexes.personsForAddress[address.id].length
             }
 
             return Object.assign(address, {
@@ -115,6 +117,7 @@ function writeData () {
         properties: {
           id: biBuilding.id,
           hasPersons,
+          personCount,
           addresses
         },
         geometry

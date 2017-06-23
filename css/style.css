@@ -77,6 +77,10 @@ body {
   font-size: 18px;
 }
 
+body, .mapboxgl-map {
+  font-size: 18px;
+}
+
 article > * {
   width: 900px;
   max-width: 95%;
@@ -92,5 +96,28 @@ ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
+  margin-left: 1em;
+}
+
+ul li {
+  line-height: 1.5em;
+}
+
+.mapboxgl-popup-content {
+  padding: 1em;
+}
+
+.mapboxgl-popup-content h3 {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: black;
+}
+
+.mapboxgl-popup-content h3:first-of-type {
+  margin-top: 0;
+}
+
+.mapboxgl-popup-content p:last-of-type {
+  margin-bottom: 0;
 }
 
